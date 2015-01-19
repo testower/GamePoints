@@ -15,7 +15,7 @@ module.exports = function (grunt) {
       tmp: {
         expand: true,
         cwd: 'app/',
-        src: ['**', '!js/**', '!bower_components/**', '!components/**', '!**/*.css', '!game/*.js', '!app.js'],
+        src: ['**', '!js/**'],
         dest: 'tmp/'
       }
     },

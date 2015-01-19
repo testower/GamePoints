@@ -1,0 +1,52 @@
+<div class="row game-canvas">
+
+  <div class="col-md-8 panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Game points</h3>
+      </div>
+      <div class="panel-body item-area">
+        <!-- show items here -->
+        <button ng-class="{ 'btn-success': item.collected }" ng-repeat="item in gameEngine.items" class="btn btn-default game-item" ng-click="item.collect();">{{ item.letter }}</button>
+
+      </div>
+  </div>
+
+  <div class="col-md-4 panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Player items</h3>
+      </div>
+      <div class="panel-body" style="height:80%">
+        <table class="table table-condensed">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>QTY</th>
+              <th>Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="(letter, itemScore) in gameEngine.score" ng-if="itemScore.qty > 0">
+              <td><button class="btn btn-default btn-disabled btn-xs">{{ letter }}</button></td>
+              <td>{{ itemScore.qty }}</td>
+              <td>{{ itemScore.total }}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+
+      <div class="panel-heading">
+        <h3 class="panel-title">Bonuses: {{ gameEngine.bonusTotal }}</h3>
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-6">
+            Total <span id="game-total-score">{{ gameEngine.scoreTotal }}</span>
+          </div>
+          <div class="col-md-6" style="bottom:0;">
+            <button class="btn btn-default btn-warning" ng-click="gameEngine.generateGame();">New game</button>
+          </div>
+      </div>
+  </div>
+
+</div>

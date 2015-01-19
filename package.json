@@ -1,9 +1,9 @@
 {
-  "name": "angular-seed",
-  "private": true,
-  "version": "0.0.0",
-  "description": "A starter project for AngularJS",
-  "repository": "https://github.com/angular/angular-seed",
+  "name": "game-points",
+  "private": false,
+  "version": "0.1",
+  "description": "A GamePoints Demo App based on angular seeds",
+  "repository": "https://github.com/testower/GamePoints",
   "license": "MIT",
   "devDependencies": {
     "bower": "^1.3.1",

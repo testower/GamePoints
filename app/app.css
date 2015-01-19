@@ -35,6 +35,7 @@
  */
 
 .game-canvas {
+  margin-top:1em;
   width:1024px;
   margin-left:auto;
   margin-right:auto;

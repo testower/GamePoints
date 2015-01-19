@@ -6,7 +6,7 @@
       </div>
       <div class="panel-body item-area">
         <!-- show items here -->
-        <button ng-class="{ 'btn-success': item.collected }" ng-repeat="item in items" class="btn btn-default game-item" ng-click="item.collect();">{{ item.letter }}</button>
+        <button ng-class="{ 'btn-success': item.collected }" ng-repeat="item in gameEngine.items" class="btn btn-default game-item" ng-click="item.collect();">{{ item.letter }}</button>
 
       </div>
   </div>
@@ -25,7 +25,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr ng-repeat="(letter, itemScore) in score" ng-if="itemScore.qty > 0">
+            <tr ng-repeat="(letter, itemScore) in gameEngine.score" ng-if="itemScore.qty > 0">
               <td><button class="btn btn-default btn-disabled btn-xs">{{ letter }}</button></td>
               <td>{{ itemScore.qty }}</td>
               <td>{{ itemScore.total }}</td>
@@ -36,15 +36,15 @@
       </div>
 
       <div class="panel-heading">
-        <h3 class="panel-title">Bonuses: {{ bonus }}</h3>
+        <h3 class="panel-title">Bonuses: {{ gameEngine.bonusTotal }}</h3>
       </div>
       <div class="panel-body">
         <div class="row">
           <div class="col-md-6">
-            Total {{ total }}
+            Total <span id="game-total-score">{{ gameEngine.scoreTotal }}</span>
           </div>
           <div class="col-md-6" style="bottom:0;">
-            <button class="btn btn-default btn-warning" ng-click="reset();">New game</button>
+            <button class="btn btn-default btn-warning" ng-click="gameEngine.generateGame();">New game</button>
           </div>
       </div>
   </div>

@@ -23,14 +23,13 @@ describe('my app', function() {
         toMatch(/Game points/);
     });
 
-    describe('item', function () {
-      it('clicking it should change its css to btn-success', function () {
-        var elm = element.all(by.css('[ng-view] .game-item')).first();
-
-        expect(elm.getAttribute('class')).not.toMatch(/btn-success/);
+    describe('collecting an item', function () {
+      var elm = element.all(by.css('[ng-view] .game-item')).first();
+      it('should change its appearance to indicate that is has been collected', function () {
         elm.click();
         expect(elm.getAttribute('class')).toMatch(/btn-success/);
       });
+
     });
   });
 

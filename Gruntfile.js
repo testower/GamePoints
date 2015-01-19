@@ -9,14 +9,42 @@ module.exports = function (grunt) {
       main: {
         expand: true,
         cwd: 'app/',
-        src: ['**', '!js/**', '!lib/**', '!**/*.css'],
+        src: ['**', '!js/**', '!bower_components/**', '!components/**', '!**/*.css', '!game/*.js', '!app.js'],
         dest: 'dist/'
       },
       tmp: {
         expand: true,
         cwd: 'app/',
-        src: ['**', '!js/**', '!lib/**'],
+        src: ['**', '!js/**', '!bower_components/**', '!components/**', '!**/*.css', '!game/*.js', '!app.js'],
         dest: 'tmp/'
+      }
+    },
+
+    ngAnnotate: {
+      options: {
+        singleQuotes: false,
+      },
+      app: {
+        files: [{
+          expand: true,
+          cwd: 'app/game',
+          src: '*.js',
+          dest: 'tmp/js', // Destination path prefix
+          ext: '.js',     // Dest filepaths will have this extension.
+          extDot: 'last', // Extensions in filenames begin after the last dot
+        }],
+      }
+    },
+
+    useminPrepare: {
+      html: 'tmp/index.html'
+    },
+
+    uglify: {
+      options: {
+        report: 'min',
+        // TODO: find out why angular won't mangle
+        mangle: false
       }
     },
 
@@ -26,34 +54,8 @@ module.exports = function (grunt) {
       }
     },
 
-    useminPrepare: {
-      html: 'tmp/index.html'
-    },
-
     usemin: {
       html: ['dist/index.html']
-    },
-
-    uglify: {
-      options: {
-        report: 'min',
-        mangle: true
-      }
-    },
-    ngAnnotate: {
-      options: {
-        singleQuotes: true,
-      },
-      app: {
-        files: [{
-          expand: true,
-          cwd: 'app/js',
-          src: '*.js',
-          dest: 'tmp/js',   // Destination path prefix
-          ext: '.js', // Dest filepaths will have this extension.
-          extDot: 'last',       // Extensions in filenames begin after the last dot
-        }],
-      }
     }
   });
 
@@ -70,6 +72,7 @@ module.exports = function (grunt) {
   grunt.registerTask(
     'default',
     [
+      'clean',
       'copy',
       'ngAnnotate',
       'useminPrepare',
